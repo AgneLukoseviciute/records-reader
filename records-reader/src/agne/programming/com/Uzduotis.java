@@ -1,5 +1,6 @@
 package agne.programming.com;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,13 +9,12 @@ public class Uzduotis {
 
 	public static void main(String[] args) {
 
-		if(args.length < 1) {
-			System.out.println("No text file provided");
-			System.exit(1);
-		}
+		String csvFile = "/Users/user/Documents/records.csv";
 
-		try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))){
-			String currLine = "";
+		try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))){
+			//skips first line "Athlete, Mark"
+			String currLine = reader.readLine();
+			
 
 			while ((currLine = reader.readLine()) != null){
 

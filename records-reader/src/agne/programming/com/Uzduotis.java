@@ -4,20 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-//import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Uzduotis {
 
 	public static void main(String[] args) {
-		
-		//Gson gson;
-		
 
 		try {
-			
+
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					Thread.currentThread().getContextClassLoader().getResourceAsStream("records.csv")));
-					
+
 			//skips first line "Athlete, Mark"
 			String currLine = reader.readLine();
 
@@ -31,7 +29,62 @@ public class Uzduotis {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
+
+class athlete {
+	
+	@SerializedName("Rank")
+	@Expose
+	private Integer rank;
+	@SerializedName("Mark")
+	@Expose
+	private String mark;
+	@SerializedName("Athlete")
+	@Expose
+	private String athlete;
+	@SerializedName("Date")
+	@Expose
+	private String date;
+	@SerializedName("Location")
+	@Expose
+	private String location;
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public String getMark() {
+		return mark;
+	}
+
+	public String getAthlete() {
+		return athlete;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+}
+
+abstract class fileReader{
+
+}
+
+
+class csvFileReader extends fileReader{
+
+}
+
+class JSONFileReader extends fileReader {
+	
+	
+}
+

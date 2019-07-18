@@ -4,14 +4,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+
 public class Uzduotis {
 
 	public static void main(String[] args) {
-
-		String csvFile = "/Users/user/Documents/records.csv";
+		
+		Gson gson;
+		
+		
+		//String csvFile = "/Users/user/Documents/records.csv";
 
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(csvFile));
+			BufferedReader reader = new BufferedReader(new FileReader("records.csv"));
 			
 			//skips first line "Athlete, Mark"
 			String currLine = reader.readLine();

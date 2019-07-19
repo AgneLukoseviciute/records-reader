@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -38,7 +37,7 @@ public class Uzduotis {
 
 }
 
-class athlete {
+class Athlete {
 	
 	@SerializedName("Rank")
 	@Expose
@@ -78,16 +77,16 @@ class athlete {
 
 }
 
-abstract class fileReader{
+abstract class MyFileReader{
 
 }
 
 
-class csvFileReader extends fileReader{
+class CSVFileReader extends MyFileReader{
 
 }
 
-class JSONFileReader extends fileReader {
+class JSONFileReader extends MyFileReader {
 	
 	
 }

@@ -1,6 +1,8 @@
 package agne.programming.com;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -13,8 +15,10 @@ public class Uzduotis {
 
 		try {
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					Thread.currentThread().getContextClassLoader().getResourceAsStream("records.csv")));
+			
+			File csvFile = new File ("assets/records.csv");
+			
+			BufferedReader reader = new BufferedReader(new FileReader(csvFile));
 
 			//skips first line "Athlete, Mark"
 			String currLine = reader.readLine();

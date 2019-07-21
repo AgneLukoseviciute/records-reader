@@ -106,12 +106,8 @@ class Athlete {
 
 }
 
-abstract class MyFileReader{
-	//nesugalvoju ka cia atskriti
-}
 
-
-class CSVFileReader extends MyFileReader{
+class CSVFileReader {
 	
 	public static ArrayList<Athlete> csvAthleteList = new ArrayList<Athlete>();
 	
@@ -148,7 +144,7 @@ class CSVFileReader extends MyFileReader{
 	
 }
 
-class JSONFileReader extends MyFileReader {
+class JSONFileReader {
 	
 	public static ArrayList<Athlete> jsonAthleteList = new ArrayList<Athlete>();
 	

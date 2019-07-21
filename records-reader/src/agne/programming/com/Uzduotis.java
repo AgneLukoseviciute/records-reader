@@ -6,21 +6,31 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 
 public class Uzduotis {
+	
 
 	public static void main(String[] args) {
 		CSVFileReader csvRead = new CSVFileReader();
 		csvRead.intoObjects();
-		csvRead.printObjects();
 		
 		JSONFileReader jsonRead = new JSONFileReader();
 		jsonRead.intoObjects();
-		jsonRead.printObjects();
+		
+		Uzduotis uzduotis = new Uzduotis();
+		uzduotis.printDifferences(CSVFileReader.csvAthleteList, JSONFileReader.jsonAthleteList);
+	}
+	
+	public void printDifferences(ArrayList<Athlete> csvObjectList, ArrayList<Athlete> jsonObjectList) {
+		for (int i = 0; i < csvObjectList.size(); i++) {
+			Athlete currCsvAthlete = csvObjectList.get(i);
+			Athlete currJsonAthlete = jsonObjectList.get(i);
+			currCsvAthlete.checkForDifference(currJsonAthlete);
+		}
 	}
 	
 }
@@ -70,6 +80,29 @@ class Athlete {
 	public String getLocation() {
 		return location;
 	}
+	
+	//reikia pakeisti jei gali buti daugiau negu viena klaida
+	public void checkForDifference(Athlete athlete) {
+		//finds what the difference is and provides that value of CSV and SJON
+		if (this.rank != athlete.rank){
+			System.out.println(this.getName() + " rank mismatch. CSV: " + this.getRank() + ", JSON: " + athlete.getRank());
+		}
+		else if (!(this.mark.equals(athlete.mark))) {
+			System.out.println(this.getName() + " mark mismatch. CSV: " + this.getMark() + ", JSON: " + athlete.getMark());
+		}
+		else if (!(this.name.equals(athlete.name))) {
+			System.out.println(this.getName() + " name mismatch. CSV: " + this.getName() + ", JSON: " + athlete.getName());
+		}
+		else if (!(this.date.equals(athlete.date))) {
+			System.out.println(this.getName() + " date mismatch. CSV: " + this.getDate() + ", JSON: " + athlete.getDate());
+		}
+		else if (!(this.location.equals(athlete.location))) {
+			System.out.println(this.getName() + " location mismatch. CSV: " + this.getLocation() + ", JSON: " + athlete.getLocation());
+		}
+		else
+			return;
+	}
+	
 
 }
 
@@ -80,7 +113,7 @@ abstract class MyFileReader{
 
 class CSVFileReader extends MyFileReader{
 	
-	ArrayList<Athlete> csvAthleteList = new ArrayList<Athlete>();
+	public static ArrayList<Athlete> csvAthleteList = new ArrayList<Athlete>();
 	
 	public CSVFileReader () {
 		
@@ -109,20 +142,15 @@ class CSVFileReader extends MyFileReader{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
-	public void printObjects() {
-		
-		for (int i =0; i< csvAthleteList.size(); i++) {
-			System.out.println(csvAthleteList.get(i).getName() + csvAthleteList.get(i).getMark());
-		}
-	}
-
 }
 
 class JSONFileReader extends MyFileReader {
 	
-	Athlete[] jsonAthletesArr = null;
+	public static ArrayList<Athlete> jsonAthleteList = new ArrayList<Athlete>();
 	
 	public JSONFileReader() {
 		
@@ -137,7 +165,8 @@ class JSONFileReader extends MyFileReader {
 			jsonReader = new FileReader(jsonFile);
 			
 			//creates an array of Athlete objects storing JSON data
-			jsonAthletesArr = gson.fromJson(jsonReader, Athlete[].class);
+			jsonAthleteList = gson.fromJson(jsonReader, new TypeToken<ArrayList<Athlete>>(){}.getType());
+			
 
 			jsonReader.close();
 			
@@ -146,12 +175,5 @@ class JSONFileReader extends MyFileReader {
 		}
 	}
 	
-	//for debugging
-	public void printObjects() {
-		
-		for (int i =0; i< jsonAthletesArr.length; i++) {
-			System.out.println(jsonAthletesArr[i].getName());
-		}
-	}
 }
 

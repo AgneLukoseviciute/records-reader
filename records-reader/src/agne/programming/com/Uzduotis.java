@@ -85,24 +85,36 @@ class Athlete {
 	public void checkForDifference(Athlete athlete) {
 		//finds what the difference is and provides that value of CSV and SJON
 		if (this.rank != athlete.rank){
-			System.out.println(this.getName() + " rank mismatch. CSV: " + this.getRank() + ", JSON: " + athlete.getRank());
+			System.out.println("Athlete: " + this.getName() + ". Mismatch value: rank. CSV: " + this.getRank() + ", JSON: " + athlete.getRank());
 		}
 		else if (!(this.mark.equals(athlete.mark))) {
-			System.out.println(this.getName() + " mark mismatch. CSV: " + this.getMark() + ", JSON: " + athlete.getMark());
+			System.out.println("Athlete: " + this.getName() + ". Mismatch value: mark. CSV: " + this.getMark() + ", JSON: " + athlete.getMark());
 		}
 		else if (!(this.name.equals(athlete.name))) {
-			System.out.println(this.getName() + " name mismatch. CSV: " + this.getName() + ", JSON: " + athlete.getName());
+			System.out.println("Athlete: " + this.getName() + ". Mismatch value: name. CSV: " + this.getName() + ", JSON: " + athlete.getName());
 		}
 		else if (!(this.date.equals(athlete.date))) {
-			System.out.println(this.getName() + " date mismatch. CSV: " + this.getDate() + ", JSON: " + athlete.getDate());
+			System.out.println("Athlete: " + this.getName() + ". Mismatch value: date. CSV: " + this.getDate() + ", JSON: " + athlete.getDate());
 		}
 		else if (!(this.location.equals(athlete.location))) {
-			System.out.println(this.getName() + " location mismatch. CSV: " + this.getLocation() + ", JSON: " + athlete.getLocation());
+			System.out.println("Athlete: " + this.getName() + ". Mismatch value: location. CSV: " + this.getLocation() + ", JSON: " + athlete.getLocation());
 		}
 		else
 			return;
 	}
 	
+	Boolean mismatch = false;
+	
+	public void checkForDifference2(Athlete athlete) {
+		
+	}
+	
+	public void checkMark(Athlete athlete) {
+		if (!(this.mark.equals(athlete.mark))) {
+			mismatch = true;
+			System.out.println();
+		}
+	}
 
 }
 

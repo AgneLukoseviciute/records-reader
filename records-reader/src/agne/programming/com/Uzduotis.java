@@ -29,7 +29,7 @@ public class Uzduotis {
 		for (int i = 0; i < csvObjectList.size(); i++) {
 			Athlete currCsvAthlete = csvObjectList.get(i);
 			Athlete currJsonAthlete = jsonObjectList.get(i);
-			currCsvAthlete.checkForDifference2(currJsonAthlete);
+			currCsvAthlete.checkForDifferences(currJsonAthlete);
 		}
 	}
 	
@@ -81,7 +81,7 @@ class Athlete {
 		return location;
 	}
 
-	public void checkForDifference2(Athlete athlete) {
+	public void checkForDifferences(Athlete athlete) {
 		this.checkRank(athlete);
 		this.checkMark(athlete);
 		this.checkName(athlete);
@@ -163,8 +163,7 @@ class CSVFileReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+			
 	}
 	
 }

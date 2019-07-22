@@ -1,4 +1,4 @@
-package agne.programming.com;
+package com.lukoseviciute.programming;
 
 import java.io.BufferedReader;
 import java.io.File;

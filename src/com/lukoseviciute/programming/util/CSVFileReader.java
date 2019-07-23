@@ -6,20 +6,23 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.lukoseviciute.programming.models.Athlete;
 
-public class CSVFileReader {
+public class CSVFileReader implements FileReaderI{
 	
-	public static ArrayList<Athlete> csvAthleteList = new ArrayList<Athlete>();
+	ArrayList<Athlete> csvAthleteList = new ArrayList<Athlete>();
 	
 	public CSVFileReader () {
 		
 	}
 	
-	public void intoObjects() {
-		File csvFile = new File ("assets/records.csv");
+	@Override
+	public List<Athlete> intoObjects(String fileStr) {
+		File csvFile = new File (fileStr);
 		BufferedReader csvReader;
+
 		try { 
 			csvReader = new BufferedReader(new FileReader(csvFile));
 			
@@ -40,6 +43,8 @@ public class CSVFileReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return csvAthleteList;
 			
 	}
 

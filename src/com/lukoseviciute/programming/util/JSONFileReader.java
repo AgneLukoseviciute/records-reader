@@ -6,22 +6,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lukoseviciute.programming.models.Athlete;
 
-public class JSONFileReader {
+public class JSONFileReader implements FileReaderI {
 	
-	public static ArrayList<Athlete> jsonAthleteList = new ArrayList<Athlete>();
+	ArrayList<Athlete> jsonAthleteList = new ArrayList<Athlete>();
 	
 	public JSONFileReader() {
 		
 	}
 	
-	public void intoObjects() {
+	@Override
+	public List<Athlete> intoObjects(String fileStr) {
 		Gson gson = new Gson();
-		File jsonFile = new File ("assets/records_tweaked.json");
+		File jsonFile = new File (fileStr);
 		Reader jsonReader;
 		
 		try {
@@ -36,6 +38,8 @@ public class JSONFileReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return jsonAthleteList;
 	}
 	
 

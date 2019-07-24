@@ -6,21 +6,25 @@ import com.lukoseviciute.programming.models.Athlete;
 
 public class Uzduotis {
 	
-	public Uzduotis(String csvFile, String jsonFile) {
+	public Uzduotis(String csvFile, String jsonFile, String xmlFile) {
 		csvRead = new CSVFileReader();
 		jsonRead = new JSONFileReader();
+		xmlRead = new XMLFileReader();
 		csvAthleteList = csvRead.intoObjects(csvFile);
 		jsonAthleteList = jsonRead.intoObjects(jsonFile);
+		xmlAthleteList = xmlRead.intoObjects(xmlFile);
 	}
 	
 	private CSVFileReader csvRead;
 	private JSONFileReader jsonRead;
+	private XMLFileReader xmlRead;
 	private List<Athlete> csvAthleteList;
 	private List<Athlete> jsonAthleteList;
+	private List<Athlete> xmlAthleteList;
 
 	public static void main(String[] args) {
 		
-		Uzduotis uzduotis = new Uzduotis("assets/records.csv", "assets/records_tweaked.json");
+		Uzduotis uzduotis = new Uzduotis("assets/records.csv", "assets/records_tweaked.json", "assets/records_tweaked.xml");
 		uzduotis.printDifferences(uzduotis.csvAthleteList, uzduotis.jsonAthleteList);
 	
 	}
